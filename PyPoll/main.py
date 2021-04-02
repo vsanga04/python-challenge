@@ -2,13 +2,15 @@
 import os
 import csv
 
-# read csv
+# read and parse csv
 csvpath = os.path.join("Resources", "election_data.csv")
 
 with open(csvpath) as csvfile:
     csvfile = csv.reader(csvfile, delimiter=',')
     print(csvfile)
 
+    csvheader = next(csvfile)
+    print(f"{csvheader}")
 
 
 #dataset is composed of three columns: `Voter ID`, `County`, and `Candidate`. 

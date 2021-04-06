@@ -27,22 +27,50 @@ with open(csvpath) as csvfile:
 
 with open(csvpath) as csvfile:
     csvfile = csv.reader(csvfile, delimiter=',')
+    
+    csvheader = next(csvfile)
+    
     Candidate_Names = []
     for row in csvfile:
         Candidate_Names.append(row[2])
 
-    Candidate_set = set(Candidate_Names)
+    Candidate_set = list(set(Candidate_Names))
     print(Candidate_set)
-#        Candidates_column = row[2]
- #       if Candidates in Candidate_column:
-  #              candidate_index = Candidates.index(Candidates)
 
-# The percentage of votes each candidate won
+
+
  
  
 # The total number of votes each candidate won
- 
+    # OTooley_votes = Candidate_Names.count("O'Tooley")
+    # print(OTooley_votes)
+    # Li_votes = Candidate_Names.count("Li")
+    # print(Li_votes)
+    # Khan_votes = Candidate_Names.count("Khan")
+    # print(Khan_votes)
+    # Correy_votes = Candidate_Names.count("Correy")
+    # print(Correy_votes)
+    # Candidates = []
+    # Candidate_Votes = []
+  
+
+    #https://stackoverflow.com/questions/2600191/how-can-i-count-the-occurrences-of-a-list-item
+    Candidate_Count = {}
+    [Candidate_Count.update({i:Candidate_Count.get(i,0)+1}) for i in Candidate_Names]
+    print(Candidate_Count)
+
+    #for x in range(Candidate_set):
+# The percentage of votes each candidate won 
+   # OTooley_Percent = OTooley_votes/total_votes
+   # print(OTooley_Percent)
+   #https://www.tutorialfor.com/questions-133100.htm
+    Percentages = {}
+    for i in Candidate_Count:
+        Percentages[i] = (Candidate_Count[i]/total_votes*100)
+    print(Percentages)
 
 # The winner of the election based on popular vote.
- 
+    winner = max(Candidate_Count, key=Candidate_Count.get)
+    print(winner)
+
 # your final script should both print the analysis to the terminal and export a text file with the results.

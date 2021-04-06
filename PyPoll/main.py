@@ -66,11 +66,11 @@ with open(csvpath) as csvfile:
    #https://www.tutorialfor.com/questions-133100.htm
     Percentages = {}
     for i in Candidate_Count:
-        Percentages[i] = (Candidate_Count[i]/total_votes*100)
+        Percentages[i] = "{:.2%}".format(Candidate_Count[i]/total_votes)
     print(Percentages)
 
 # The winner of the election based on popular vote.
     winner = max(Candidate_Count, key=Candidate_Count.get)
-    print(winner)
+    print("Winner of the election is " + winner)
 
 # your final script should both print the analysis to the terminal and export a text file with the results.

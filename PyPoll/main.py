@@ -77,12 +77,16 @@ with open(csvpath) as csvfile:
    
     # print items from dict https://thispointer.com/python-4-ways-to-print-items-of-a-dictionary-line-by-line/
     for y, values in Candidate_info.items():
-        print(y,':', values)
-
+        print(f"{y, values}")
+        
 # The winner of the election based on popular vote.
     winner = max(Candidate_Count, key=Candidate_Count.get)
     print("Winner of the election is " + winner)
 
 # your final script should both print the analysis to the terminal and export a text file with the results.
-#csvfile2 = os.path.join("Resources", "election_data.txt")
-#with open(csvfile2, "w", newline="") as 
+csvfile2 = os.path.join("Analysis", "election_results.txt")
+with open(csvfile2, "w") as election_results:
+    election_results.write(f'Total Votes: {total_votes}')
+    for y, values in Candidate_info.items():
+        election_results.write(f"{y, values}")
+    election_results.write("Winner of the election is " + winner)

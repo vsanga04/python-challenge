@@ -1,25 +1,53 @@
 import os
 import csv
 
-csvpath = os.path.join('Resources', 'budget_data.csv')
+# read and parse csv
+csvpath = os.path.join("Resources", "budget_data.csv")
 
-# Open and read csv
-#with open(budget_data_csv) as csv_file:
- #   csv_reader = csv.reader(csv_file, delimiter=",")
 
-    # Read the header row first (skip this part if there is no header)
 
 with open(csvpath) as csvfile:
+    csvfile = csv.reader(csvfile, delimiter=',')
+    #print(csvfile)
 
-    # CSV reader specifies delimiter and variable that holds contents
-    csvreader = csv.reader(csvfile, delimiter=',')
+    csvheader = next(csvfile)
+    #print(f"{csvheader}")
 
-    csv_header = next(csvfile)
-    print(f"Header: {csv_header}")
+# * In this challenge, you are tasked with creating a Python script for analyzing the financial records of your company. 
+# You will give a set of financial data called [budget_data.csv](PyBank/Resources/budget_data.csv). 
+# The dataset is composed of two columns: `Date` and `Profit/Losses`. (Thankfully, your company has rather lax standards for accounting so the records are simple.)
 
+# * Your task is to create a Python script that analyzes the records to calculate each of the following:
 
-    for row in csvreader:
+#   * The total number of months included in the dataset
+    Date = [(row[0]) for row in csvfile]
+    total_months = len(Date)
+    print(f'Total Months: {total_months}')
 
-        # Convert row to float and compare to grams of fiber
-        if float(row[1]) >= 5:
-            print(row)
+#   * The net total amount of "Profit/Losses" over the entire period
+    # Total_PL = []
+    # for row in csvfile:
+    #     Total_PL.append(row[1])
+    # print(sum(Total_PL)) 
+
+#sum of column: https://stackoverflow.com/questions/13517080/sum-a-csv-column-in-python
+with open(csvpath) as csvfile:
+    csvfile = csv.reader(csvfile, delimiter=',')
+    #print(csvfile)
+    csvheader = next(csvfile)      
+    Total_PL  = 0
+    for row in csvfile:
+        Total_PL += int(row[1])
+    print(Total_PL)
+
+    
+#   * Calculate the changes in "Profit/Losses" over the entire period, then find the average of those changes
+    for i in range(1,len(Total_PL)):
+        rev_change.append(Total_PL(i) - revenue[i-1])
+    print(rev_change)
+
+#   * The greatest increase in profits (date and amount) over the entire period
+
+#   * The greatest decrease in losses (date and amount) over the entire period
+
+#* In addition, your final script should both print the analysis to the terminal and export a text file with the results.
